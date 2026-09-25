@@ -59,6 +59,20 @@ class Teacher extends Person {
   }
 }
 
+class Staff extends Person {
+  String _position;
+
+  Staff(String name, int age, this._position) : super(name, age);
+
+  // Getter
+  String get position => _position;
+
+  @override
+  String introduce() {
+    return "Hi, I'm $_name, $_age years old, working as $_position.";
+  }
+}
+
 // ==================== SCHOOL CLASS ====================
 
 class School {
@@ -158,6 +172,20 @@ void main() {
     String subject = readNonEmptyText('Subject: ');
 
     school.addPerson(Teacher(name, age, subject));
+  }
+
+  // Add staff
+  int staffCount =
+      readValidCount('How many staff members will you add? ');
+
+  for (int i = 1; i <= staffCount; i++) {
+    print('-- Staff Member #$i --');
+
+    String name = readNonEmptyText('Name: ');
+    int age = readValidAge('Age: ');
+    String position = readNonEmptyText('Position: ');
+
+    school.addPerson(Staff(name, age, position));
   }
 
   // Display school roster
